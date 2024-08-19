@@ -1,0 +1,23 @@
+{
+  "name": "database",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "db:check": "drizzle-kit check:pg",
+    "db:generate": "dotenv -e ../../.env.production drizzle-kit generate:pg",
+    "db:migrate": "dotenv -e ../../.env.production ts-node ./migrate.ts",
+    "db:push": "dotenv -e ../../.env.development -- drizzle-kit push",
+    "db:studio": "dotenv -e ../../.env.development drizzle-kit studio"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.24.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
+    "drizzle-orm": "^0.33.0",
+    "postgres": "^3.4.4"
+  }
+}
