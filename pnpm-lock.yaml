@@ -26,9 +26,15 @@ importers:
       '@fastify/autoload':
         specifier: ^5.10.0
         version: 5.10.0
+      '@saas-boilerplate/database':
+        specifier: '*'
+        version: link:../../packages/database
       '@types/node':
         specifier: ^22.4.1
         version: 22.4.1
+      dotenv-cli:
+        specifier: ^7.4.2
+        version: 7.4.2
       fastify:
         specifier: ^4.28.1
         version: 4.28.1
@@ -45,9 +51,6 @@ importers:
         specifier: ^3.23.8
         version: 3.23.8
     devDependencies:
-      '@saas-boilerplate/database':
-        specifier: '*'
-        version: link:../../packages/database
       '@saas-boilerplate/typescript-config':
         specifier: '*'
         version: link:../../packages/typescript-config
@@ -125,6 +128,9 @@ importers:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.11.24)(typescript@5.5.4)
+      tsx:
+        specifier: ^4.17.0
+        version: 4.17.0
       typescript:
         specifier: ^5.5.4
         version: 5.5.4

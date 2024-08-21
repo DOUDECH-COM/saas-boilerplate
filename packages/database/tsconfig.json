@@ -1,9 +1,9 @@
 {
-  "extends": "../typescript-config/base.json",
+  "extends": "@saas-boilerplate/typescript-config/base.json",
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "ES2021",
-    "outDir": "./dist"
+    "outDir": "dist",
+    "rootDir": "."
   },
-  "exclude": ["dist", "node_modules"]
+  "include": ["."],
+  "exclude": ["node_modules", "dist"]
 }

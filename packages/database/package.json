@@ -2,10 +2,14 @@
   "name": "@saas-boilerplate/database",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "exports": [
+    "./index.ts"
+  ],
   "scripts": {
     "db:check": "drizzle-kit check:pg",
-    "db:generate": "dotenv -e ../../.env.production drizzle-kit generate:pg",
-    "db:migrate": "dotenv -e ../../.env.production ts-node ./migrate.ts",
+    "db:generate": "dotenv -e ../../.env.production -- drizzle-kit generate",
+    "db:migrate": "dotenv -e ../../.env.development -- tsx migrate.ts",
     "db:push": "dotenv -e ../../.env.development -- drizzle-kit push",
     "db:studio": "dotenv -e ../../.env.development drizzle-kit studio"
   },
@@ -13,6 +17,7 @@
     "@saas-boilerplate/typescript-config": "workspace:*",
     "drizzle-kit": "^0.24.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.17.0",
     "typescript": "^5.5.4"
   },
   "dependencies": {

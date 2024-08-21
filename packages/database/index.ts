@@ -1,13 +1,19 @@
-export * from "./schema";
-import * as schema from "./schema";
+export * from "./schema.js";
+import * as schema from "./schema.js";
 // import { env, Logger } from "@api/utils";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { Pool } from "pg";
+import pg from "pg";
+const { Pool } = pg;
+
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // eslint-disable-next-line import/no-mutable-exports
 export let db: ReturnType<typeof drizzle<typeof schema>>;
-
+// console.log("database URL:", process.env.DATABASE_URL);
 export const initDb = async () => {
   const pool = await new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -27,9 +33,7 @@ export const initDb = async () => {
     schema,
   });
 
-  await migrate(db, {
-    migrationsFolder: "./src/db/migrations",
-  })
+  await migrate(db, { migrationsFolder: path.join(__dirname, "drizzle") })
     .then(() => {
       //   Logger.info("INIT", "Migrated database");
     })

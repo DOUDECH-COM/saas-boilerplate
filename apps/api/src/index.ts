@@ -1,12 +1,13 @@
-// import { users } from "@saas-boilerplate/database"
 // Require library to exit fastify process, gracefully (if possible)
 import { FastifyInstance, FastifyServerOptions, fastify } from "fastify";
-import { schemas } from "./schemas/auth.schema";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+import { db, initDb } from "@saas-boilerplate/database";
+await initDb(); // initialize the database
 
 type Fastify = typeof fastify;
 

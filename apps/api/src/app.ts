@@ -3,9 +3,6 @@ import { FastifyPluginAsync, FastifyServerOptions } from "fastify";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "path";
 
-import fs from "fs";
-import path from "path";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
