@@ -1,6 +1,12 @@
 // import { users } from "@saas-boilerplate/database"
 // Require library to exit fastify process, gracefully (if possible)
 import { FastifyInstance, FastifyServerOptions, fastify } from "fastify";
+import { schemas } from "./schemas/auth.schema";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 type Fastify = typeof fastify;
 
@@ -10,6 +16,17 @@ async function createServerApp(fastify: Fastify, opts: FastifyServerOptions) {
   app.register(import("./app.js")).ready((err) => {
     if (err) throw err;
     app.log.info("App ready");
+  });
+
+  // this for add schemas to the app
+  // WARNING: DO NOT TOUCH THE LINES BELOW
+  const schemasPath = path.join(__dirname, "schemas");
+  const schemas = fs.readdirSync(schemasPath);
+  schemas.forEach(async (schema) => {
+    if (schema.endsWith(".schema.ts")) {
+      const schemaExports = await import(path.join(schemasPath, schema));
+      app.addSchema(schemaExports.schemas[0]);
+    }
   });
 
   return app;
@@ -26,13 +43,6 @@ const app = await createServerApp(fastify, {
     },
   },
   pluginTimeout: 20000,
-  //   ajv: {
-  //     customOptions: {
-  //       allowUnionTypes: true,
-  //       strict: false,
-  //     },
-  //     // plugins: [ajvFormat, ajvFilePlugin],
-  //   },
 });
 //server listen
 
