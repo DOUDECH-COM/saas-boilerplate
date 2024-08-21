@@ -15,7 +15,8 @@
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.0.14",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "@saas-boilerplate/typescript-config": "workspace:*"
   },
   "packageManager": "pnpm@8.15.6",
   "engines": {

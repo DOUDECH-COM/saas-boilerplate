@@ -1,5 +1,5 @@
 {
-  "name": "database",
+  "name": "@saas-boilerplate/database",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,14 +10,17 @@
     "db:studio": "dotenv -e ../../.env.development drizzle-kit studio"
   },
   "devDependencies": {
+    "@saas-boilerplate/typescript-config": "workspace:*",
     "drizzle-kit": "^0.24.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@types/pg": "^8.11.6",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.2",
     "drizzle-orm": "^0.33.0",
+    "pg": "^8.12.0",
     "postgres": "^3.4.4"
   }
 }
