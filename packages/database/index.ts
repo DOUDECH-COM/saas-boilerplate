@@ -1,4 +1,5 @@
 export * from "./schema.js";
+export * from "drizzle-orm";
 import * as schema from "./schema.js";
 // import { env, Logger } from "@api/utils";
 import { drizzle } from "drizzle-orm/node-postgres";

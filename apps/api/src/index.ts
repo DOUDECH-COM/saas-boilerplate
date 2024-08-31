@@ -6,10 +6,27 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-import { db, initDb } from "@saas-boilerplate/database";
+import {
+  db,
+  initDb,
+  users,
+  InferSelectModel,
+} from "@saas-boilerplate/database";
 await initDb(); // initialize the database
 
 type Fastify = typeof fastify;
+
+// safeUsers is just the type of users but the password field is omitted
+interface safeUsers extends Omit<InferSelectModel<typeof users>, "password"> {}
+
+declare module "fastify" {
+  interface FastifyInstance {
+    verifyToken: () => Promise<void>;
+  }
+  interface FastifyRequest {
+    loggedUser: safeUsers | null;
+  }
+}
 
 async function createServerApp(fastify: Fastify, opts: FastifyServerOptions) {
   const app: FastifyInstance = fastify(opts);

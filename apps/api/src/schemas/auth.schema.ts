@@ -21,14 +21,20 @@ const loginSchema = z.object({
   }),
 });
 
+const authHeaders = z.object({
+  Authorization: z.string().min(1),
+});
+
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
+export type AuthHeaders = z.infer<typeof authHeaders>;
 
 // this is needed for loading the schemas in the fastify app
 export const { schemas, $ref } = buildJsonSchemas(
   {
     registerSchema,
     loginSchema,
+    authHeaders,
   },
   { $id: "auth" }
 );
