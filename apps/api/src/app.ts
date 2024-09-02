@@ -3,6 +3,8 @@ import { FastifyPluginAsync, FastifyServerOptions } from "fastify";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "path";
 
+import cors from "@fastify/cors";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -16,14 +18,19 @@ const app: FastifyPluginAsync<AppOptions> = async (
   fastify,
   opts
 ): Promise<void> => {
-  // Place here your custom code!
+  /*
+    You can place your custom code here
+    If you want to load any other fastify plugins just apply it below
+  */
 
+  // CORS plugin applied to all routes
+  fastify.register(cors, {
+    origin: true,
+  });
   // Do not touch the following lines
-
   // This loads all plugins defined in plugins
   // those should be support plugins that are reused
   // through your application
-
   fastify
     .register(AutoLoad, {
       dir: join(__dirname, "plugins"),
