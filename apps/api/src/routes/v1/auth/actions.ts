@@ -1,11 +1,6 @@
 import { FastifyPluginAsync } from "fastify";
 import { db, users, eq } from "@saas-boilerplate/database";
-import {
-  $ref,
-  AuthHeaders,
-  LoginInput,
-  RegisterInput,
-} from "src/schemas/auth.schema";
+import { $ref, LoginInput, RegisterInput } from "src/schemas/auth.schema";
 import * as _ from "radash";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
