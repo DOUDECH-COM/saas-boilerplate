@@ -17,7 +17,7 @@ const Navbar: FC<navbarProps> = ({}) => {
           {" "}
           Sign Up{" "}
         </Link>
-        <Link href="/singin" className={buttonVariants()}>
+        <Link href="/signin" className={buttonVariants()}>
           {" "}
           Sign In{" "}
         </Link>
