@@ -4,5 +4,6 @@ export async function changeLocale(locale: string) {
   cookies().set("locale", locale);
 }
 export async function getLocale() {
-  return cookies().get("locale")?.value || "en";
+  const language = cookies().get("locale")?.value || "en";
+  return language;
 }
